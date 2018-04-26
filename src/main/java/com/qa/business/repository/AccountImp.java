@@ -1,6 +1,6 @@
 package com.qa.business.repository;
 
-import com.qa.persistence.domain.Account;
+
 
 public interface AccountImp {
 

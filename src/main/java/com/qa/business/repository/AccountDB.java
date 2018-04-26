@@ -2,20 +2,17 @@ package com.qa.business.repository;
 
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
-import javax.json.JsonString;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.rmi.CORBA.Util;
 import javax.transaction.Transactional;
 
 import com.qa.persistence.domain.Account;
 import com.qa.util.JSONUtil;
 
 import static javax.transaction.Transactional.TxType.REQUIRED;
-import static javax.transaction.Transactional.TxType.SUPPORTS;
+
 
 @Default
-@Transactional
 public class AccountDB implements AccountImp {
 	
 	@PersistenceContext(unitName = "primary")
@@ -28,7 +25,7 @@ public class AccountDB implements AccountImp {
 	@Transactional(REQUIRED)
     public String createAccount(String accountAsJSON) {
 		manager.persist(ju.getObjectForJSON(accountAsJSON, Account.class));
-    	return "Account has been created";
+    	return "{}";
     }
     
     @Override
