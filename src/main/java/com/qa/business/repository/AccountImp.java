@@ -4,8 +4,8 @@ import com.qa.persistence.domain.Account;
 
 public interface AccountImp {
 
-	String createAccount(Account account);
+	String createAccount(String accountAsJSON);
 	String updateAccount(long id, String accountAsJSON);
-	String deleteAccount(Account account);
-	
+	String deleteAccount(Long id);
+	String getAnAccount(Long id);
 }

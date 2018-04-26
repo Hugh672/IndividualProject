@@ -10,9 +10,24 @@ public class ProjectService implements IProjectService {
 	private AccountImp repo;
 
 	@Override
-	public String getAllMovies() {
-		// TODO Auto-generated method stub
-		return null;
+	public String createAccount(String accountAsJSON) {
+		return repo.createAccount(accountAsJSON);
 	}
+
+	@Override
+	public String deleteAccount(Long id) {
+		return repo.deleteAccount(id);
+	}
+
+	@Override
+	public String updateAccount(long id, String accountAsJSON) {
+		return repo.updateAccount(id, accountAsJSON);
+	}
+
+	@Override
+	public String getAnAccount(Long id) {
+		return repo.getAnAccount(id);
+	}
+
 	
 }

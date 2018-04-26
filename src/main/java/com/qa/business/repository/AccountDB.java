@@ -2,8 +2,10 @@ package com.qa.business.repository;
 
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
+import javax.json.JsonString;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.rmi.CORBA.Util;
 import javax.transaction.Transactional;
 
 import com.qa.persistence.domain.Account;
@@ -24,16 +26,23 @@ public class AccountDB implements AccountImp {
 	
 	@Override
 	@Transactional(REQUIRED)
-    public String createAccount(Account account) {
-		manager.persist(account);
+    public String createAccount(String accountAsJSON) {
+		manager.persist(ju.getObjectForJSON(accountAsJSON, Account.class));
     	return "Account has been created";
     }
     
     @Override
 	@Transactional(REQUIRED)
-    public String deleteAccount(Account account) {
-    	manager.remove(account);
-    	return "Account has been deleted";
+    public String deleteAccount(Long id) {
+    	Account account = manager.find(Account.class,id);
+    	if (account!= null) {
+    		manager.remove(account);
+    	
+    	return "{\"Message\":\"Account has been deleted\"}";
+    	
+    } else {
+    }
+    	return "{\"Message\":\"Account has been deleted\"}";
     }
    
     @Override
@@ -43,10 +52,22 @@ public class AccountDB implements AccountImp {
     	Account updated=ju.getObjectForJSON(accountAsJSON,Account.class);
     	if (original!=null) {
     		manager.merge(updated);
-    		return "Account has been updated";
+    		return  "{\"Message\":\"Account has been updated\"}";
     	}
     	
-    	return "Account has not been updated";
+    	return  "{\"Message\":\"Account has not been updated\"}";
     }
-
+    
+    @Override
+    public String getAnAccount(Long id) {
+    	Account anAccount = manager.find(Account.class,id);;
+    	
+    	if(anAccount != null) {
+    		return ju.getJSONForObject(anAccount);
+    	}
+    	else
+    	{
+    		return "(\"message\":\"Account not found\")";
+    	}
+    }
 }
