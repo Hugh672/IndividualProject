@@ -1,7 +1,5 @@
 package com.qa.business.repository;
 
-
-
 public interface AccountImp {
 
 	String createAccount(String accountAsJSON);

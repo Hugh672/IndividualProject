@@ -48,4 +48,17 @@ public class AccountDBRepoTest {
 		String actualValue = repo.createAccount(ACCOUNT_AS_JSON);
 		Assert.assertEquals(expectedValue, actualValue);
 	}
+	
+	@Test
+	public void testUpdateAccount() {
+		String expectedValue = "{\"Message\":\"Account has not been updated\"}";
+		String actualValue = repo.updateAccount(123L, ACCOUNT_AS_JSON);
+		Assert.assertEquals(expectedValue, actualValue);
+		
+		Mockito.when(manager.find(Mockito.eq(Account.class), Mockito.anyLong())).thenReturn(account);
+		
+		expectedValue = "{\"Message\":\"Account has been updated\"}";
+		actualValue = repo.updateAccount(123L, ACCOUNT_AS_JSON);
+		Assert.assertEquals(expectedValue, actualValue);
+	}
 }
