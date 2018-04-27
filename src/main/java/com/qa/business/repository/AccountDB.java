@@ -39,7 +39,7 @@ public class AccountDB implements AccountImp {
     	
     } else {
     }
-    	return "{\"Message\":\"Account has been deleted\"}";
+    	return "{\"message\": \"Account does not exist!\"}";
     }
    
     @Override

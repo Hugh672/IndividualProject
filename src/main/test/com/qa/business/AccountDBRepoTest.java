@@ -61,4 +61,17 @@ public class AccountDBRepoTest {
 		actualValue = repo.updateAccount(123L, ACCOUNT_AS_JSON);
 		Assert.assertEquals(expectedValue, actualValue);
 	}
+	
+	@Test
+	public void testDeleteAccount() {
+		String expectedValue = "{\"message\": \"Account does not exist!\"}";
+		String actualValue = repo.deleteAccount(123L);
+		Assert.assertEquals(expectedValue, actualValue);
+		
+		Mockito.when(manager.find(Mockito.eq(Account.class), Mockito.anyLong())).thenReturn(account);
+		
+		expectedValue = "{\"Message\":\"Account has been deleted\"}";
+		actualValue = repo.deleteAccount(123L);
+		Assert.assertEquals(expectedValue, actualValue);
+	}
 }
