@@ -25,7 +25,7 @@ public class AccountDB implements AccountImp {
 	@Transactional(REQUIRED)
     public String createAccount(String accountAsJSON) {
 		manager.persist(ju.getObjectForJSON(accountAsJSON, Account.class));
-    	return "{}";
+    	return "{\"Message\": Account Created\"}";
     }
     
     @Override

@@ -31,23 +31,24 @@ public class AccountEndPoint {
 	@PUT
 	@Path("/update/{id}")
 	@Produces({ "application/json" })
+	@Consumes({ "application/json" })
 	public String updateAccount(@PathParam("id")long id, String accountAsJSON) {
 	return service.updateAccount(id, accountAsJSON);
 		}
 	
 	@DELETE
-	@Path("/delete/")
+	@Path("/delete/{id}")
 	@Produces({ "application/json" })
 	@Consumes({ "application/json" })
-	public String deleteAccount(Long id) {
+	public String deleteAccount(@PathParam("id")Long id) {
 		return service.deleteAccount(id);
 	}
 			
 	@GET
-	@Path("/get/")
+	@Path("/get/{id}")
 	@Produces({ "application/json" })
 	@Consumes({ "application/json" })
-	public String getAnAccount(Long id) {
+	public String getAnAccount(@PathParam("id")Long id) {
 		return service.getAnAccount(id);
 	}
 	
