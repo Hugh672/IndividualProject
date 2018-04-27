@@ -66,5 +66,17 @@ public class AccountDB implements AccountImp {
     	{
     		return "(\"message\":\"Account not found\")";
     	}
+    	
     }
+	public void setEntityManager(EntityManager manager) {
+		this.manager = manager;
+	
+	}
+
+	public void setJSONUtil(JSONUtil ju) {
+		this.ju = ju;
+		
+	}
+    
+    
 }

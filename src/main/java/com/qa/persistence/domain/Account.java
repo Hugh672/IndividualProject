@@ -15,6 +15,13 @@ public class Account {
 	
 	public Account() {}
 	
+	public Account(String firstName, String lastName, String accountNumber) {
+		super();
+		this.firstName = firstName;
+		this.surname = surname;
+		this.accNo = accNo;
+	}
+	
 	public Long getId() {
 		return id;
 	}
